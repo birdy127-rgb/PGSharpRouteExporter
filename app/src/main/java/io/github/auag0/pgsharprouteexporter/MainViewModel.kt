@@ -44,10 +44,22 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private suspend fun loadRoutes(appInfo: ApplicationInfo) {
         _routes.emit(emptyList())
-        val prefsFile = SuFile(
+
+        val prefsFile1 = SuFile(
+            appInfo.dataDir,
+            "shared_prefs/com.google.android.gms.safetynet.xml"
+        )
+        val prefsFile2 = SuFile(
             appInfo.dataDir,
             "shared_prefs/com.google.android.gms.chimera.hl2.xml"
         )
+        val prefsFile = if (prefsFile1.exists()) prefsFile1 else prefsFile2
+
+        if (!prefsFile.exists()) {
+            _toastMsg.emit(ToastMeg.EmptyRoutes)
+            return
+        }
+
         val xmlText = prefsFile.newInputStream().reader().use { it.readText() }
         val prefs = SPParser.parseXmlText(xmlText)
         val hlfavorRoute = prefs["hlfavorRoute"] ?: run {
