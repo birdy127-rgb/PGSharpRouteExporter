@@ -14,12 +14,12 @@ android {
         }
     }
     namespace = "io.github.auag0.pgsharprouteexporter"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "io.github.auag0.pgsharprouteexporter"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
     }
