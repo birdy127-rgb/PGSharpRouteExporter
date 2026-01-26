@@ -2,5 +2,5 @@
 
     <style name="Base.Theme.MyApp" parent="Theme.Material3.Light.NoActionBar" />
 
-    <style name="Theme.MyApp" parent="Base.Theme.MyApp" />
+    <style name="Theme.AppTheme" parent="Base.Theme.MyApp" />
 </resources>

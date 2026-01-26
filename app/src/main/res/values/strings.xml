@@ -9,4 +9,25 @@
     <string name="toast_empty_routes">You have no favorited routes!</string>
     <string name="toast_not_installed">Pokemon GO is not installed!</string>
     <string name="toast_saved_as_gpx">Saved as gpx!</string>
+
+    <string name="for_non_root_user">Non root user</string>
+    <string name="select_pgsdata_file">Select PGSData.dat file</string>
+    <string name="manually_select_file">Select file manually</string>
+    <string name="select_file_hint">Please select the PGSharp configuration file (PGSData.dat)</string>
+    <string name="toast_file_loaded_successfully">Routes loaded successfully</string>
+    <string name="toast_no_routes_in_file">No route information found in the file</string>
+    <string name="dialog_select_file_title">Select File</string>
+    <string name="dialog_select_file_message">Please select the PGSharp configuration file (PGSData.dat)</string>
+    <string name="dialog_select_file">Select File</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_unknown">An unknown error occurred</string>
+
+    <string name="root_user">Root User</string>
+    <string name="root_available">Root available</string>
+    <string name="root_not_available">Root not available</string>
+    <string name="reload">Reload</string>
+
+    <string name="routes_loaded_root">Routes loaded from root.</string>
+    <string name="routes_loaded_file">Routes loaded from file.</string>
+    <string name="no_routes_loaded">No routes loaded.</string>
 </resources>

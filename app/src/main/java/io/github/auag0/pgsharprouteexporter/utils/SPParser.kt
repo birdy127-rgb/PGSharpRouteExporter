@@ -16,47 +16,72 @@ object SPParser {
     private const val VALUE_NULL = "null"
 
     fun parseXmlText(xmlText: String): Map<String, Any?> {
-        val xmlPullParser: XmlPullParser = Xml.newPullParser()
-        xmlPullParser.setInput(StringReader(xmlText))
+        val parser: XmlPullParser = Xml.newPullParser()
+        parser.setInput(StringReader(xmlText))
 
-        val items: MutableMap<String, Any?> = mutableMapOf()
-        var key = ""
-        var stringSet: MutableSet<String>? = null
+        val items = mutableMapOf<String, Any?>()
 
-        while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) {
-            when (xmlPullParser.eventType) {
+        var currentSetKey: String? = null
+        var currentSet: MutableSet<String>? = null
+
+        while (true) {
+            val event = parser.next()
+            if (event == XmlPullParser.END_DOCUMENT) break
+
+            when (event) {
                 XmlPullParser.START_TAG -> {
-                    val tagName = xmlPullParser.name ?: continue
+                    val tag = parser.name ?: continue
 
-                    if (tagName == TAG_SET) {
-                        stringSet = mutableSetOf()
-                    } else if (stringSet != null && tagName == TAG_STRING) {
-                        stringSet.add(xmlPullParser.nextText())
-                    }
+                    when (tag) {
+                        TAG_SET -> {
+                            currentSetKey = parser.getAttributeValue(null, ATTRIBUTE_NAME)
+                            currentSet = mutableSetOf()
+                        }
 
-                    val value = xmlPullParser.getAttributeValue(null, ATTRIBUTE_VALUE)
-                    key = xmlPullParser.getAttributeValue(null, ATTRIBUTE_NAME) ?: continue
+                        TAG_STRING -> {
+                            val attrName = parser.getAttributeValue(null, ATTRIBUTE_NAME)
+                            val attrValue = parser.getAttributeValue(null, ATTRIBUTE_VALUE)
+                            val text = try {
+                                parser.nextText()
+                            } catch (_: Exception) {
+                                null
+                            }
+                            val value = attrValue ?: text ?: VALUE_NULL
 
-                    val itemValue = when (tagName) {
-                        TAG_BOOLEAN -> value.toBooleanStrictOrNull()
-                        TAG_FLOAT -> value.toFloatOrNull()
-                        TAG_INT -> value.toIntOrNull()
-                        TAG_LONG -> value.toLongOrNull()
-                        TAG_STRING -> xmlPullParser.nextText() ?: VALUE_NULL
-                        else -> null
-                    }
-                    if (itemValue != null) {
-                        items[key] = itemValue
+                            if (currentSet != null && attrName == null) {
+                                if (value != VALUE_NULL) currentSet.add(value)
+                            } else {
+                                val key = attrName ?: continue
+                                items[key] = if (value == VALUE_NULL) null else value
+                            }
+                        }
+
+                        TAG_BOOLEAN, TAG_FLOAT, TAG_INT, TAG_LONG -> {
+                            val key = parser.getAttributeValue(null, ATTRIBUTE_NAME) ?: continue
+                            val attrValue = parser.getAttributeValue(null, ATTRIBUTE_VALUE)
+                            val parsed: Any? = when (tag) {
+                                TAG_BOOLEAN -> attrValue?.toBooleanStrictOrNull()
+                                TAG_FLOAT -> attrValue?.toFloatOrNull()
+                                TAG_INT -> attrValue?.toIntOrNull()
+                                TAG_LONG -> attrValue?.toLongOrNull()
+                                else -> null
+                            }
+                            items[key] = parsed
+                        }
+
+                        else -> {}
                     }
                 }
 
                 XmlPullParser.END_TAG -> {
-                    if (xmlPullParser.name == TAG_SET) {
-                        if (stringSet != null) {
-                            items[key] = stringSet
+                    val tag = parser.name
+                    if (tag == TAG_SET) {
+                        if (currentSetKey != null && currentSet != null) {
+                            items[currentSetKey] = currentSet
                         }
+                        currentSetKey = null
+                        currentSet = null
                     }
-                    stringSet = null
                 }
             }
         }

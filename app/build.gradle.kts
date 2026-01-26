@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,10 +42,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
     buildFeatures {
+        compose = true
         buildConfig = true
-    }
-    viewBinding {
-        enable = true
     }
     packaging {
         resources {
@@ -59,6 +59,23 @@ dependencies {
     implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.activity:activity-ktx:1.12.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
+
+    implementation(platform("androidx.compose:compose-bom:2026.01.00"))
+    implementation("androidx.activity:activity-compose:1.12.2")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    ksp("com.google.dagger:hilt-compiler:2.56.2")
+
+    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
 
     val glideVersion = "5.0.5"
     implementation("com.github.bumptech.glide:glide:$glideVersion")
