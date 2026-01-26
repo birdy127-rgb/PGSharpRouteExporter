@@ -43,7 +43,7 @@ fun RouteRow(route: Route, onSave: () -> Unit) {
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "${route.points.size} points",
+                    text = stringResource(R.string.route_points, route.points.size),
                     style = MaterialTheme.typography.bodySmall
                 )
             }

@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="dialog_title_required_root">ルート権限が必須です</string>
-    <string name="dialog_message_required_root">このアプリを使用するにはルート権限を付与してください。</string>
-    <string name="dialog_button_exit">閉じる</string>
     <string name="not_installed">インストールされていません</string>
-    <string name="tooltip_save_as_gpx">gpxで保存</string>
-    <string name="toast_empty_routes">お気に入りのルートがありません</string>
-    <string name="toast_not_installed">ポケモンGOがインストールされていません</string>
-    <string name="toast_saved_as_gpx">gpxで保存されました！</string>
-
-    <string name="for_non_root_user">非Rootユーザー</string>
-    <string name="select_pgsdata_file">PGSData.datファイルを選択</string>
-    <string name="manually_select_file">手動でファイルを選択</string>
-    <string name="select_file_hint">PGSharpの設定ファイル(PGSData.dat)を選択してください</string>
-    <string name="toast_file_loaded_successfully">ファイルからルートを読み込みました</string>
-    <string name="toast_no_routes_in_file">ファイルにルート情報が含まれていません</string>
-    <string name="dialog_select_file_title">ファイル選択</string>
-    <string name="dialog_select_file_message">PGSharpの設定ファイル(PGSData.dat)を選択してください</string>
-    <string name="dialog_select_file">ファイルを選択</string>
-    <string name="cancel">キャンセル</string>
-    <string name="error_unknown">不明なエラーが発生しました</string>
 
     <string name="root_user">Rootユーザー</string>
-    <string name="root_available">Root利用可能</string>
-    <string name="root_not_available">Root利用不可</string>
+    <string name="root_available">Rootアクセス利用可能</string>
+    <string name="root_not_available">Rootアクセス利用不可</string>
     <string name="reload">再読み込み</string>
 
-    <string name="routes_loaded_root">Rootで読み込まれました</string>
-    <string name="routes_loaded_file">ファイルから読み込まれました</string>
-    <string name="no_routes_loaded">読み込まれていません。</string>
+    <string name="non_root_users">非Rootユーザーの場合</string>
+    <string name="select_pgsdata_file">PGSData.datファイルを選択</string>
+    <string name="select_file_instructions">PGSharpの設定ファイル(PGSData.dat)を選択してください</string>
+
+    <string name="routes_loaded_from_root">Root経由でルートを読み込みました</string>
+    <string name="routes_loaded_from_file">設定ファイルからルートを読み込みました</string>
+    <string name="no_routes_loaded">ルートが読み込まれていません</string>
+    <string name="route_points">%d地点</string>
+
+    <string name="tooltip_save_as_gpx">GPXファイルとして保存</string>
+
+    <string name="toast_empty_routes">お気に入りのルートが見つかりません</string>
+    <string name="toast_saved_as_gpx">GPXファイルとして保存しました</string>
+    <string name="toast_file_loaded_successfully">ルートを正常に読み込みました</string>
+    <string name="toast_no_routes_in_file">ファイルにルートデータが見つかりません</string>
+    <string name="error_unknown">不明なエラーが発生しました</string>
 </resources>

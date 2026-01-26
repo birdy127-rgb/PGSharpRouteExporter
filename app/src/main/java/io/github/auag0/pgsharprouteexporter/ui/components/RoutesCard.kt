@@ -37,8 +37,8 @@ fun RoutesCard(
             } else {
                 Column(modifier = Modifier.fillMaxSize()) {
                     val text = when (routeSource) {
-                        RouteSource.ROOT -> stringResource(R.string.routes_loaded_root)
-                        RouteSource.FILE -> stringResource(R.string.routes_loaded_file)
+                        RouteSource.ROOT -> stringResource(R.string.routes_loaded_from_root)
+                        RouteSource.FILE -> stringResource(R.string.routes_loaded_from_file)
                         RouteSource.NONE -> stringResource(R.string.no_routes_loaded)
                     }
                     Text(

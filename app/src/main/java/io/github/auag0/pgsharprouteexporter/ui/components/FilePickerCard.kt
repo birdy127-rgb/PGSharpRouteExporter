@@ -24,9 +24,9 @@ fun FilePickerCard(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
         ) {
-            Text(text = stringResource(R.string.for_non_root_user))
+            Text(text = stringResource(R.string.non_root_users))
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = stringResource(R.string.select_file_hint))
+            Text(text = stringResource(R.string.select_file_instructions))
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = { onAction(MainAction.SelectFile) }) {
                 Text(text = stringResource(R.string.select_pgsdata_file))
