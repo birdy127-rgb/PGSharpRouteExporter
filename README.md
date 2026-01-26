@@ -2,6 +2,9 @@
 
 PGSharp Route Exporter is an Android app that allows you to export your favorite routes from **PGSharp** as **GPX files**.
 
+> [!WARNING]  
+> **Disclaimer**: This tool is not affiliated with PGSharp or Niantic. Using third-party tools may carry risks to your account. Use this application at your own risk.
+
 - **Rooted devices**: Routes are extracted automatically from PGSharp app data
 - **Non-root devices**: Routes can be loaded manually from the `PGSData.dat` configuration file
 
